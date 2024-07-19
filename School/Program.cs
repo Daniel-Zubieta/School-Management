@@ -106,9 +106,15 @@ namespace School
                                     Utils.Utils.createCourse();
                                     break;
                                 case "2":
-
+                                    //Enroll Student
                                     break;
                                 case "3":
+                                    optionSelected = "0";
+                                    break;
+                                case "4":
+                                    optionSelected = "0";
+                                    break;
+                                case "5":
                                     optionSelected = "0";
                                     break;
                                 default:
@@ -135,13 +141,18 @@ namespace School
         {
             DateTime bdt = new DateTime(2010, 10, 31);
             DateTime edt = new DateTime(2023, 12, 20);
-            Student student = new Student("Alan", "Parker", "Heroinas #220", "61605204", "Phisics", bdt, edt);
+            Student student = new Student(10001 ,"Alan", "Parker", "Heroinas #220", "61605204", "Phisics", bdt, edt);
             listOfStudentsAux.Add(student);
 
 
             bdt = new DateTime(2011, 02, 05);
             edt = new DateTime(2022, 10, 15);
-            student = new Student("Liz", "Rous", "America #550", "6158460", "Maths", bdt, edt);
+            student = new Student(10002, "Liz", "Rous", "America #550", "6158460", "Maths", bdt, edt);
+            listOfStudentsAux.Add(student);
+
+            bdt = new DateTime(2010, 03, 05);
+            edt = new DateTime(2023, 11, 16);
+            student = new Student(10003, "Alan", "Ortega", "Libertador Bolivar #450", "7156460", "Maths", bdt, edt);
             listOfStudentsAux.Add(student);
         }
     }

@@ -33,10 +33,24 @@ namespace School
             this.creditsEarned = 0;
         }
 
+        public Student(int iD, string studentFirstNameAux, string studentLastNameAux, string addressAux, string phoneNumberAux, string MajorAux, DateTime dateOfbirthAux, DateTime enrollmentDateAux)
+        {
+            this.studentID = iD;
+            this.studentFirstName = studentFirstNameAux;
+            this.studentLastName = studentLastNameAux;
+            this.address = addressAux;
+            this.phoneNumber = phoneNumberAux;
+            this.Major = MajorAux;
+            this.dateOfbirth = dateOfbirthAux;
+            this.enrollmentDate = enrollmentDateAux;
+            this.gradePointAvg = 0;
+            this.creditsEarned = 0;
+        }
         internal void PrintData()
         {
             //printHeader();
             Console.WriteLine("*********Student Data*********" + Environment.NewLine);
+            Console.WriteLine("Student ID:  " + this.studentID);
             Console.WriteLine("First Name:  " + this.studentFirstName);
             Console.WriteLine("Last Name:   " + this.studentLastName);
             Console.WriteLine("Address:     " + this.address);
