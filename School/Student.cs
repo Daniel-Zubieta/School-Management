@@ -10,14 +10,16 @@ namespace School
     {
         internal int studentID;
         internal string studentFirstName { get; set; }
-        internal string studentLastName;        
-        internal string address;
-        internal string phoneNumber;        
-        internal string Major;
-        internal double gradePointAvg;
-        internal int creditsEarned;
-        internal DateTime dateOfbirth;
-        internal DateTime enrollmentDate;
+        internal string studentLastName { get; set; }
+        internal string address { get; set; }
+        internal string phoneNumber { get; set; }
+        internal string Major { get; set; }
+        internal double gradePointAvg { get; set; }
+        internal int creditsEarned { get; set; }
+        internal DateTime dateOfbirth { get; set; }
+        internal DateTime enrollmentDate { get; set; }
+
+        internal List<Grade> ListOfGrades = new List<Grade>();
 
 
         public Student(string studentFirstNameAux, string studentLastNameAux, string addressAux, string phoneNumberAux, string MajorAux, DateTime dateOfbirthAux, DateTime enrollmentDateAux)
@@ -33,7 +35,7 @@ namespace School
             this.creditsEarned = 0;
         }
 
-        public Student(int iD, string studentFirstNameAux, string studentLastNameAux, string addressAux, string phoneNumberAux, string MajorAux, DateTime dateOfbirthAux, DateTime enrollmentDateAux)
+        public Student(int iD, string studentFirstNameAux, string studentLastNameAux, string addressAux, string phoneNumberAux, string MajorAux, DateTime dateOfbirthAux, DateTime enrollmentDateAux, double gradePointAvgAux, int creditsEarnedAux)
         {
             this.studentID = iD;
             this.studentFirstName = studentFirstNameAux;
@@ -43,10 +45,10 @@ namespace School
             this.Major = MajorAux;
             this.dateOfbirth = dateOfbirthAux;
             this.enrollmentDate = enrollmentDateAux;
-            this.gradePointAvg = 0;
-            this.creditsEarned = 0;
+            this.gradePointAvg = gradePointAvgAux;
+            this.creditsEarned = creditsEarnedAux;
         }
-        internal void PrintData()
+        internal void PrintStudentData()
         {
             //printHeader();
             Console.WriteLine("*********Student Data*********" + Environment.NewLine);
@@ -63,11 +65,44 @@ namespace School
             Console.WriteLine("******************************" + Environment.NewLine);
             //Console.WriteLine("" + Environment.NewLine);
         }
+        internal void PrintStudentBasicData()
+        {
+            //printHeader();
+            Console.WriteLine("*********Student Data*********" + Environment.NewLine);
+            Console.WriteLine("Student ID:  " + this.studentID);
+            Console.WriteLine("First Name:  " + this.studentFirstName);
+            Console.WriteLine("Last Name:   " + this.studentLastName);
+            //Console.WriteLine("" + Environment.NewLine);
+        }
         static void printHeader()
         {
             Console.Clear();
             Console.WriteLine("******************************");
             Console.WriteLine("***School Management System***" + Environment.NewLine);
+        }
+        static void earnCredits()
+        {
+            printHeader();
+            Console.WriteLine("Please enter the 'Student ID' That you want to Earn Credits" + Environment.NewLine);
+
+        }
+
+        internal void addGrade(Grade gradeAux)
+        {
+            this.ListOfGrades.Add(gradeAux);
+        }
+
+        internal void PrintStudentGrade(int courseId)
+        {
+            
+            foreach (Grade gradeAux in this.ListOfGrades)
+            {
+                if (gradeAux.course.courseId == courseId)
+                {
+                    gradeAux.printGrade();
+                }
+                
+            }
         }
     }
    

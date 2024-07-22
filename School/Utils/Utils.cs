@@ -17,6 +17,7 @@ namespace School.Utils
         static public void PrintMenuStudent()
         {
             printHeader();
+            Console.WriteLine("<<<<Choose an Option>>>>");
             Console.WriteLine("------------------------");
             Console.WriteLine("(1) Add Student");
             Console.WriteLine("(2) Earn Credits");
@@ -27,6 +28,7 @@ namespace School.Utils
         static public void PrintMenuTeacher()
         {
             printHeader();
+            Console.WriteLine("<<<<Choose an Option>>>>");
             Console.WriteLine("------------------------");
             Console.WriteLine("(1) Add Teacher");
             Console.WriteLine("(2) View Teacher Information");
@@ -36,11 +38,25 @@ namespace School.Utils
         static public void PrintMenuCourses()
         {
             printHeader();
+            Console.WriteLine("<<<<Choose an Option>>>>");
             Console.WriteLine("------------------------");
             Console.WriteLine("(1) Create Course");
             Console.WriteLine("(2) Enroll Student in a Course");
             Console.WriteLine("(3) Assign Teacher to Course");
             Console.WriteLine("(4) View Course Information");
+            Console.WriteLine("(5) Exit");
+            Console.WriteLine("------------------------");
+        }
+
+        static public void PrintMenuGrades()
+        {
+            printHeader();
+            Console.WriteLine("<<<<Choose an Option>>>>");
+            Console.WriteLine("------------------------");
+            Console.WriteLine("(1) Grade Course");
+            Console.WriteLine("(2) List Course Grades");
+            Console.WriteLine("(3) List Approved Students");
+            Console.WriteLine("(4) List Failed Students");
             Console.WriteLine("(5) Exit");
             Console.WriteLine("------------------------");
         }
@@ -55,7 +71,7 @@ namespace School.Utils
             Console.WriteLine("(4) Close");
             Console.WriteLine("------------------------");
         }
-        public static void addStudent()
+        public static void addStudent(List<Student> listOfStudentsAux)
         {
             int studentID = 0;
             string studentFirstName = string.Empty;
@@ -165,7 +181,7 @@ namespace School.Utils
             enrollmentDate = DateTime.Parse(enrollmentDateAux);
 
             Student student = new Student(studentFirstName, studentLastName, address, phoneNumber, major, dateOfbirth, enrollmentDate);
-
+            listOfStudentsAux.Add(student);
             //Student Data
             printHeader();
             Console.WriteLine("New Student was created" + Environment.NewLine);
@@ -706,8 +722,10 @@ namespace School.Utils
         static void printHeader()
         {
             Console.Clear();
-            Console.WriteLine("******************************");
-            Console.WriteLine("***School Management System***" + Environment.NewLine);
+            Console.WriteLine("************************" + Environment.NewLine);
+            Console.WriteLine("School Management System" + Environment.NewLine);
+            Console.WriteLine("************************" + Environment.NewLine);
+            //Console.WriteLine("<<<<Choose an Option>>>>");
         }
         static void printStudentData(string studentFirstName, string studentLastName, string address, string phoneNumber, string dateOfBirth, string enrollmentDate, string major)
         {
@@ -756,7 +774,7 @@ namespace School.Utils
             Console.WriteLine("Status:    " + status);
             Console.WriteLine("Approval Score:   " + approvalScore);
             Console.WriteLine("Minimun GPA     " + minGPA);
-            Console.WriteLine("******************************" + Environment.NewLine);
+            Console.WriteLine("*****************************" + Environment.NewLine);
             Console.WriteLine("" + Environment.NewLine);
         }
 
@@ -770,7 +788,7 @@ namespace School.Utils
             int studentIdAux = 0;
 
             printHeader();
-            Console.WriteLine("*********Search Student*********" + Environment.NewLine);
+            Console.WriteLine("********Search Student********" + Environment.NewLine);
             Console.WriteLine("Enter the Student Name Or ID: ");
             studentNameToSearch = Console.ReadLine();
 
@@ -792,7 +810,7 @@ namespace School.Utils
                     foreach (Student item in listOfStudentsFound)
                     {
                         Console.WriteLine("");
-                        item.PrintData();
+                        item.PrintStudentData();
                     }
                     //Thread.Sleep(1000);
                     Console.WriteLine("Press any key to continue...");
@@ -802,9 +820,9 @@ namespace School.Utils
                 else
                 {
                     printHeader();
-                    Console.WriteLine("------------------------------------");
-                    Console.WriteLine("No Students with that Name was found");
-                    Console.WriteLine("------------------------------------" + Environment.NewLine);
+                    Console.WriteLine("---------------------------------------------");
+                    Console.WriteLine("No Students with the Entered 'Name' was found");
+                    Console.WriteLine("---------------------------------------------" + Environment.NewLine);
                     Console.WriteLine("Press any key to back to the Menu...");
                     Console.ReadKey();
 
@@ -829,7 +847,7 @@ namespace School.Utils
                     foreach (Student item in listOfStudentsFound)
                     {
                         Console.WriteLine("");
-                        item.PrintData();
+                        item.PrintStudentData();
                     }
                     //Thread.Sleep(1000);
                     Console.WriteLine("Press any key to continue...");
@@ -850,6 +868,8 @@ namespace School.Utils
 
             }
         }
+
+        
     }
 }
      
