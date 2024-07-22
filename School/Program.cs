@@ -48,7 +48,6 @@ namespace School
                                     Utils.Utils.addStudent(listOfStudents);
                                     break;
                                 case "2":
-
                                     earnCredits(listOfStudents);
                                     break;
                                 case "3":
@@ -102,14 +101,12 @@ namespace School
                                     break;
                                 case "2":
                                     EnrollStudent(listOfStudents, listOfCourses); 
-
                                     break;
                                 case "3":
-                                    optionSelected = "0";
+                                    //Assign Teacher to a Course
                                     break;
                                 case "4":
                                     FindCourseByID(listOfCourses);
-                                    //optionSelected = "0";
                                     break;
                                 case "5":
                                     optionSelected = "0";
@@ -140,20 +137,23 @@ namespace School
                                     break;
                                 case "3":
                                     //List Approved Students
+                                    printApprovedStudentsGrades(listOfCourses);
                                     break;
                                 case "4":
                                     // List Failed Students
+                                    printFailedStudentsGrades(listOfCourses);
                                     break;
                                 case "5":
                                     optionSelected = "0";
                                     break;
                                 default:
                                     Console.WriteLine("Option entered is not Valid");
-                                    Thread.Sleep(1500);
+                                    Thread.Sleep(2500);
                                     break;
                             }
                         }
-
+                        break;
+                    case "5":
                         break;
                     default:
                         Console.WriteLine("Option entered is not Valid");
@@ -161,11 +161,12 @@ namespace School
                         break;
                 }
             }
-            Console.WriteLine("<<<Thanks!!!>>>");
+            Console.WriteLine("***************");
+            Console.WriteLine("<<<Good Bye>>>");
+            Console.WriteLine("<<<<Thanks>>>>");
+            Console.WriteLine("***************");
             Thread.Sleep(2500);
         }
-
-        
 
         static void CreatedTestData(List<Student> listOfStudentsAux, List<Teacher> listOfTeachersAux, List<Course> listOfCoursesAux)
         {
@@ -181,7 +182,7 @@ namespace School
             Teacher teacher = new Teacher(20001, "Jose", "Perez", "Main Street #422", "4654846", "Maths", "No Specialization", 4400, bdt, edt);
             listOfTeachersAux.Add(teacher);
             
-            Course course = new Course(30001, "Maths", 55, teacher, "10:00-12:00", "Introduction to programming", "Ready", 80, 70);
+            Course course = new Course(30001, "Introduction to programming", 55, teacher, "10:00-12:00", "Introduction to programming 301", "Ready", 80, 70);
             listOfCoursesAux.Add(course);
             
             //Students
@@ -189,6 +190,7 @@ namespace School
             edt = new DateTime(2023, 12, 20);
             Student student = new Student(10001, "Alan", "Parker", "Heroinas #220", "61605204", "Phisics", bdt, edt, 80, 50);
             listOfStudentsAux.Add(student);
+            course.enrollStudent(student);
             Grade grade = new Grade(student, course, 80);
             student.addGrade(grade);
 
@@ -198,7 +200,7 @@ namespace School
             student = new Student(10002, "Liz", "Rous", "America #550", "6158460", "Maths", bdt, edt, 50, 40);
             listOfStudentsAux.Add(student);
             course.enrollStudent(student);
-            grade = new Grade(student, course, 70);
+            grade = new Grade(student, course, 82);
             student.addGrade(grade);
 
             bdt = new DateTime(2010, 03, 05);
@@ -379,8 +381,8 @@ namespace School
         static void printHeader()
         {
             Console.Clear();
-            Console.WriteLine("************************" + Environment.NewLine);
-            Console.WriteLine("School Management System" + Environment.NewLine);
+            Console.WriteLine("************************");
+            Console.WriteLine("School Management System");
             Console.WriteLine("************************" + Environment.NewLine);
             //Console.WriteLine("<<<<Choose an Option>>>>");
         }
@@ -716,5 +718,140 @@ namespace School
 
         }
 
+        static void printApprovedStudentsGrades(List<Course> listOfCourseAux)
+        {
+
+            //Found Course by ID 
+            List<Course> listOfCoursesFound = new List<Course>();
+            string courseIdToSearch = string.Empty;
+            string courseIdAux = string.Empty;
+            int courseId2Aux = 0;
+            bool flagCourseFound = false;
+            Course courseFound = null;
+
+            while (!flagCourseFound)
+            {
+                printHeader();
+                Console.WriteLine("*********Search Course*********" + Environment.NewLine);
+                Console.WriteLine("Enter the Course ID that you want to display the Grades");
+                courseIdToSearch = Console.ReadLine();
+                if (!string.IsNullOrEmpty(courseIdToSearch) && isInt(courseIdToSearch))
+                {
+                    foreach (Course item in listOfCourseAux)
+                    {
+                        courseId2Aux = item.courseId;
+
+                        if (courseId2Aux == int.Parse(courseIdToSearch))
+                        {
+                            listOfCoursesFound.Add(item);
+                        }
+
+                    }
+                    if (listOfCoursesFound.Count > 0)
+                    {
+                        foreach (Course item in listOfCoursesFound)
+                        {
+                            Console.WriteLine("");
+                            item.PrintCourseData();
+                            courseFound = item;
+                        }
+                        flagCourseFound = true;
+                        Console.WriteLine("<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>");
+                        courseFound.printApprovedStudentsGrades();
+                    }
+                    else
+                    {
+                        courseIdToSearch = string.Empty;
+                        flagCourseFound = false;
+                        printHeader();
+                        Console.WriteLine("---------------------------------");
+                        Console.WriteLine("No Course with that ID was found");
+                        Console.WriteLine("---------------------------------" + Environment.NewLine);
+                        Thread.Sleep(2000);
+                    }
+                }
+                else
+                {
+                    courseIdToSearch = string.Empty;
+                    flagCourseFound = false;
+                    printHeader();
+                    Console.WriteLine("-------------------------------------");
+                    Console.WriteLine("The Value entered is Empty or Invalid");
+                    Console.WriteLine("<<<<<<<<<Please Try Again>>>>>>>>>>>>");
+                    Console.WriteLine("-------------------------------------" + Environment.NewLine);
+                    Thread.Sleep(2500);
+                }
+            }
+            //End Found Course by ID
+
+        }
+
+        static void printFailedStudentsGrades(List<Course> listOfCourseAux)
+        {
+
+            //Found Course by ID 
+            List<Course> listOfCoursesFound = new List<Course>();
+            string courseIdToSearch = string.Empty;
+            string courseIdAux = string.Empty;
+            int courseId2Aux = 0;
+            bool flagCourseFound = false;
+            Course courseFound = null;
+
+            while (!flagCourseFound)
+            {
+                printHeader();
+                Console.WriteLine("******Search Course*****" + Environment.NewLine);
+                Console.WriteLine("Enter the Course ID that you want to display the Grades");
+                courseIdToSearch = Console.ReadLine();
+                if (!string.IsNullOrEmpty(courseIdToSearch) && isInt(courseIdToSearch))
+                {
+                    foreach (Course item in listOfCourseAux)
+                    {
+                        courseId2Aux = item.courseId;
+
+                        if (courseId2Aux == int.Parse(courseIdToSearch))
+                        {
+                            listOfCoursesFound.Add(item);
+                        }
+
+                    }
+                    if (listOfCoursesFound.Count > 0)
+                    {
+                        foreach (Course item in listOfCoursesFound)
+                        {
+                            Console.WriteLine("");
+                            item.PrintCourseData();
+                            courseFound = item;
+                        }
+                        flagCourseFound = true;
+                        Console.WriteLine("<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>");
+                        courseFound.printFailedStudentsGrades();
+                    }
+                    else
+                    {
+                        courseIdToSearch = string.Empty;
+                        flagCourseFound = false;
+                        printHeader();
+                        Console.WriteLine("---------------------------------");
+                        Console.WriteLine("No Course with that ID was found");
+                        Console.WriteLine("---------------------------------" + Environment.NewLine);
+                        Thread.Sleep(2000);
+                    }
+                }
+                else
+                {
+                    courseIdToSearch = string.Empty;
+                    flagCourseFound = false;
+                    printHeader();
+                    Console.WriteLine("-------------------------------------");
+                    Console.WriteLine("The Value entered is Empty or Invalid");
+                    Console.WriteLine("<<<<<<<<<Please Try Again>>>>>>>>>>>>");
+                    Console.WriteLine("-------------------------------------" + Environment.NewLine);
+                    Thread.Sleep(2500);
+                }
+            }
+            //End Found Course by ID
+
+        }
     }
 }

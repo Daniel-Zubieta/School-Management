@@ -722,8 +722,8 @@ namespace School.Utils
         static void printHeader()
         {
             Console.Clear();
-            Console.WriteLine("************************" + Environment.NewLine);
-            Console.WriteLine("School Management System" + Environment.NewLine);
+            Console.WriteLine("************************");
+            Console.WriteLine("School Management System");
             Console.WriteLine("************************" + Environment.NewLine);
             //Console.WriteLine("<<<<Choose an Option>>>>");
         }

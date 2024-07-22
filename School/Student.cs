@@ -104,6 +104,39 @@ namespace School
                 
             }
         }
+        internal void PrintStudentGradeIfApproved(int courseId)
+        {
+
+            foreach (Grade gradeAux in this.ListOfGrades)
+            {
+                if (gradeAux.course.courseId == courseId)
+                {
+                    if (gradeAux.score >= gradeAux.course.approvalScore)
+                    {
+                        gradeAux.printGrade();
+                    }
+                    
+                }
+
+            }
+        }
+        internal void PrintStudentGradeIfFailed(int courseId)
+        {
+
+            foreach (Grade gradeAux in this.ListOfGrades)
+            {
+                if (gradeAux.course.courseId == courseId)
+                {
+                    if (gradeAux.score < gradeAux.course.approvalScore)
+                    {
+                        gradeAux.printGrade();
+                    }
+
+                }
+
+            }
+        }
+
     }
    
 }

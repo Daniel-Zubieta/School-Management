@@ -87,5 +87,27 @@ namespace School
             Console.WriteLine("Press Any key to continue...");
             Console.ReadKey();
         }
+
+        internal void printApprovedStudentsGrades()
+        {
+            Console.WriteLine("<List Of 'Students' Approved>" + Environment.NewLine);
+            foreach (Student studentAux in this.ListOfStudents)
+            {
+                studentAux.PrintStudentGradeIfApproved(this.courseId);
+            }
+            Console.WriteLine("Press Any key to continue...");
+            Console.ReadKey();
+        }
+
+        internal void printFailedStudentsGrades()
+        {
+            Console.WriteLine("<List Of 'Students' Approved>" + Environment.NewLine);
+            foreach (Student studentAux in this.ListOfStudents)
+            {
+                studentAux.PrintStudentGradeIfFailed(this.courseId);
+            }
+            Console.WriteLine("Press Any key to continue...");
+            Console.ReadKey();
+        }
     }
 }

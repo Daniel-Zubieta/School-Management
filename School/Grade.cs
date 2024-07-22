@@ -25,7 +25,15 @@ namespace School
         public void printGrade()
         {
             student.PrintStudentBasicData();
-            Console.WriteLine("Score:       " + score + Environment.NewLine);
+            Console.WriteLine("Score:       " + score);
+            if (score >= course.approvalScore)
+            { 
+                Console.WriteLine("Status:      Course Approved" + Environment.NewLine);
+            }
+            else
+            {
+                Console.WriteLine("Status:      Course Failed" + Environment.NewLine); 
+            }                     
             Console.WriteLine("******************************" + Environment.NewLine);            
         }
     }
