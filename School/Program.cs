@@ -8,7 +8,7 @@ using School.Utils;
 
 namespace School
 {
-    public class Program
+    public class School
     {
         public static void Main()
         {
@@ -57,6 +57,8 @@ namespace School
                                 case "4":
                                     optionSelected = "0";
                                     break;
+                                case "x":
+                                    break;
                                 default:
                                     Console.WriteLine("Option entered is not Valid");
                                     Thread.Sleep(1500);
@@ -72,13 +74,16 @@ namespace School
                             switch (optionTeacher)
                             {
                                 case "1":
-                                    Utils.Utils.addTeacher();
+                                    Utils.Utils.addTeacher(listOfTeachers);
                                     break;
                                 case "2":
                                     viewTeacherInformation(listOfTeachers);
                                     break;
                                 case "3":
+                                    assignTeacherToCourse(listOfTeachers, listOfCourses);
                                     optionSelected = "0";
+                                    break;
+                                case "x":
                                     break;
                                 default:
                                     Console.WriteLine("");
@@ -97,19 +102,21 @@ namespace School
                             switch (optionCourse)
                             {
                                 case "1":
-                                    Utils.Utils.createCourse();
+                                    Utils.Utils.createCourse(listOfCourses);
                                     break;
                                 case "2":
                                     EnrollStudent(listOfStudents, listOfCourses); 
                                     break;
                                 case "3":
-                                    //Assign Teacher to a Course
+                                    assignTeacherToCourse(listOfTeachers, listOfCourses);
                                     break;
                                 case "4":
                                     FindCourseByID(listOfCourses);
                                     break;
                                 case "5":
                                     optionSelected = "0";
+                                    break;
+                                case "x":
                                     break;
                                 default:
                                     Console.WriteLine("Option entered is not Valid");
@@ -146,6 +153,8 @@ namespace School
                                 case "5":
                                     optionSelected = "0";
                                     break;
+                                case "x":
+                                    break;
                                 default:
                                     Console.WriteLine("Option entered is not Valid");
                                     Thread.Sleep(2500);
@@ -168,7 +177,153 @@ namespace School
             Thread.Sleep(2500);
         }
 
-        static void CreatedTestData(List<Student> listOfStudentsAux, List<Teacher> listOfTeachersAux, List<Course> listOfCoursesAux)
+        private static void assignTeacherToCourse(List<Teacher> listOfTeachers, List<Course> listOfCourseAux)
+        {
+            //Found Course by ID 
+            List<Course> listOfCoursesFound = new List<Course>();
+            string courseIdToSearch = string.Empty;
+            string courseIdAux = string.Empty;
+            string instructorAux = string.Empty;
+            int courseIdAux2 = 0;
+            int studentIdAux3 = 0;
+            bool flagCourseFound = false;
+            Course courseFound = null;
+
+            while (!flagCourseFound)
+            {
+                printHeader();
+                Console.WriteLine("*********Search Course*********" + Environment.NewLine);
+                Console.WriteLine("Enter the 'ID' of the 'Course' were you want to enroll the Teacher");
+                courseIdToSearch = Console.ReadLine();
+                if (courseIdToSearch == "x") { return; }
+                if (!string.IsNullOrEmpty(courseIdToSearch) && isInt(courseIdToSearch))
+                {
+                    foreach (Course item in listOfCourseAux)
+                    {
+                        courseIdAux2 = item.courseId;
+
+                        if (courseIdAux2 == int.Parse(courseIdToSearch))
+                        {
+                            listOfCoursesFound.Add(item);
+                        }
+
+                    }
+                    if (listOfCoursesFound.Count > 0)
+                    {
+                        foreach (Course item in listOfCoursesFound)
+                        {
+                            item.PrintCourseData();
+                            courseFound = item;
+
+                            if (!courseFound.instructorStatus())
+                            {
+                                flagCourseFound = true;
+                                Console.WriteLine("**************");
+                                Console.WriteLine("Course Found!");
+                                Console.WriteLine("Press Any key to continue...");
+                                Console.ReadKey();
+
+                                //Found Teacher by ID 
+                                List<Teacher> listOfTeacherFound = new List<Teacher>();
+                                string teacherIdToSearch = string.Empty;
+                                string teacherIdAux = string.Empty;
+                                int teacherId2Aux = 0;
+                                bool flagTeacherFound = false;
+                                Teacher teacherFound = null;
+
+                                while (!flagTeacherFound)
+                                {
+                                    printHeader();
+                                    Console.WriteLine("*********Search Teacher*********" + Environment.NewLine);
+                                    Console.WriteLine("Enter the 'Teacher ID'that you want to display the information ");
+                                    teacherIdToSearch = Console.ReadLine();
+                                    if (teacherIdToSearch == "x") { return; }
+                                    if (!string.IsNullOrEmpty(teacherIdToSearch) && isInt(teacherIdToSearch))
+                                    {
+                                        foreach (Teacher itemT in listOfTeachers)
+                                        {
+                                            teacherId2Aux = itemT.teacherID;
+
+                                            if (teacherId2Aux == int.Parse(teacherIdToSearch))
+                                            {
+                                                listOfTeacherFound.Add(itemT);
+                                            }
+
+                                        }
+                                        if (listOfTeacherFound.Count > 0)
+                                        {
+                                            printHeader();
+                                            foreach (Teacher itemT in listOfTeacherFound)
+                                            {
+                                                Console.WriteLine("");
+                                                itemT.PrintTeacherData();
+                                                teacherFound = itemT;
+                                            }
+                                            flagTeacherFound = true;
+                                            Console.WriteLine("**************");
+                                            Console.WriteLine("Teacher Found!");
+                                            Console.WriteLine("Press Any key to continue...");
+                                            Console.ReadKey();
+
+                                            printHeader();
+                                            Console.WriteLine("---------------------------------");
+                                            Console.WriteLine("Teacher: '" + teacherFound.teacherFirstName + "" + teacherFound.teacherLastName);
+                                            Console.WriteLine("Was Assigned as Instructor to the Course:");
+                                            Console.WriteLine(courseFound.PrintCourseData);
+                                            Console.WriteLine("---------------------------------" + Environment.NewLine);
+                                            Console.WriteLine("Press Any key to continue...");
+                                            Console.ReadKey();
+                                        }
+                                        else
+                                        {
+                                            teacherIdToSearch = string.Empty;
+                                            flagTeacherFound = false;
+                                            printHeader();
+                                            Console.WriteLine("---------------------------------");
+                                            Console.WriteLine("No Teacher with that ID was found");
+                                            Console.WriteLine("---------------------------------" + Environment.NewLine);
+                                            Console.WriteLine("Press Any key to continue...");
+                                            Console.ReadKey();
+                                            //Console.WriteLine("Press any key to back to the Menu...");
+                                            //Console.ReadKey();
+
+
+                                        }
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                flagCourseFound = true;
+                                Console.WriteLine("**************");
+                                Console.WriteLine("The Course already have an Intructor Assigned");
+                                Console.WriteLine("Press Any key to continue...");
+                                Console.ReadKey();
+                            }
+                        }
+                        
+                        //Thread.Sleep(1000)
+                    }
+                    else
+                    {
+                        courseIdToSearch = string.Empty;
+                        flagCourseFound = false;
+                        printHeader();
+                        Console.WriteLine("---------------------------------");
+                        Console.WriteLine("No Course with that ID was found");
+                        Console.WriteLine("---------------------------------" + Environment.NewLine);
+                        Console.WriteLine("Press Any key to continue...");
+                        Console.ReadKey();
+
+
+                    }
+                }
+            }
+            //End Found Course by ID 
+
+        }
+
+        private static void CreatedTestData(List<Student> listOfStudentsAux, List<Teacher> listOfTeachersAux, List<Course> listOfCoursesAux)
         {
 
             DateTime bdt;
@@ -182,7 +337,7 @@ namespace School
             Teacher teacher = new Teacher(20001, "Jose", "Perez", "Main Street #422", "4654846", "Maths", "No Specialization", 4400, bdt, edt);
             listOfTeachersAux.Add(teacher);
             
-            Course course = new Course(30001, "Introduction to programming", 55, teacher, "10:00-12:00", "Introduction to programming 301", "Ready", 80, 70);
+            Course course = new Course(30001, "Introduction to programming", 65, teacher, "10:00-12:00", "Introduction to programming 301", "Ready", 80, 70);
             listOfCoursesAux.Add(course);
             
             //Students
@@ -231,9 +386,19 @@ namespace School
             listOfStudentsAux[2].addGrade(grade);
 
             //End Course 30002 'Physics 101 
+
+            bdt = new DateTime(2008, 05, 08);
+            edt = new DateTime(2024, 10, 16);
+            student = new Student(10005, "John", "Miranda", "Thrid Street #500", "7145480", "Informatic", bdt, edt, 90, 50);
+            listOfStudentsAux.Add(student);
+
+            bdt = new DateTime(2008, 05, 08);
+            edt = new DateTime(2024, 10, 16);
+            student = new Student(10006, "Victor", "Casale", "Juan de la Rosa #10", "6445480", "System Engineering", bdt, edt, 90, 100);
+            listOfStudentsAux.Add(student);
         }
 
-        static void EnrollStudent(List<Student> listOfStudentsAux, List<Course> listOfCourseAux)//, List<Course> listOfCourseAux)
+        private static void EnrollStudent(List<Student> listOfStudentsAux, List<Course> listOfCourseAux)//, List<Course> listOfCourseAux)
         {
             //Found Student by ID 
             List<Student> listOfStudentsFound = new List<Student>();
@@ -242,6 +407,7 @@ namespace School
             int studentId2Aux = 0;
             bool flagStudentFound = false;
             Student studentFound = null;
+            bool studentIsAlreadyEnrolled = false;
 
             while (!flagStudentFound)
             {
@@ -249,6 +415,7 @@ namespace School
                 Console.WriteLine("*********Search Student*********" + Environment.NewLine);
                 Console.WriteLine("Enter the Student ID you want to Enroll: ");
                 studentIdToSearch = Console.ReadLine();
+                if (studentIdToSearch == "x") { return; }
                 if (!string.IsNullOrEmpty(studentIdToSearch) && isInt(studentIdToSearch))
                 {
                     foreach (Student studentAux in listOfStudentsAux)
@@ -296,7 +463,8 @@ namespace School
             List<Course> listOfCoursesFound = new List<Course>();
             string courseIdToSearch = string.Empty;
             string courseIdAux = string.Empty;
-            int courseId2Aux = 0;
+            int courseIdAux2 = 0;
+            int studentIdAux3 = 0;
             bool flagCourseFound = false;
             Course courseFound = null;
 
@@ -306,13 +474,14 @@ namespace School
                 Console.WriteLine("*********Search Course*********" + Environment.NewLine);
                 Console.WriteLine("Enter the 'ID' of the 'Course' were you want to enroll the Student'" + studentFound.studentFirstName + " " + studentFound.studentLastName + "'");
                 courseIdToSearch = Console.ReadLine();
+                if (courseIdToSearch == "x") { return; }
                 if (!string.IsNullOrEmpty(courseIdToSearch) && isInt(courseIdToSearch))
                 {
                     foreach (Course item in listOfCourseAux)
                     {
-                        courseId2Aux = item.courseId;
+                        courseIdAux2 = item.courseId;
 
-                        if (courseId2Aux == int.Parse(courseIdToSearch))
+                        if (courseIdAux2 == int.Parse(courseIdToSearch))
                         {
                             listOfCoursesFound.Add(item);
                         }
@@ -350,43 +519,102 @@ namespace School
             }
             //End Found Course by ID 
 
-            //Enroll Student to the Course
-            if (studentFound != null && courseFound != null)
+            //Verify is the stundet is already enrolled in the Course
+            foreach (Student studentAux in courseFound.ListOfStudents)
             {
-                if (studentFound.gradePointAvg> courseFound.minGPA)
+                studentIdAux3 = studentAux.studentID;
+
+                if (studentIdAux3 == studentFound.studentID)
                 {
-                    courseFound.enrollStudent(studentFound);
-                    printHeader();
-                    Console.WriteLine("-----------------------------------------------");
-                    Console.WriteLine("The Student '" + studentFound.studentFirstName +" "+ studentFound.studentLastName + "' was succefully Enrolled!");
-                    Console.WriteLine("-----------------------------------------------" + Environment.NewLine);
-                    Console.WriteLine("Press Any key to continue...");
-                    Console.ReadKey();
+                    studentIsAlreadyEnrolled = true;
                 }
-                else
+
+            }
+            if (studentIsAlreadyEnrolled)
+            {
+                printHeader();
+                Console.WriteLine("---------------------------------");
+                Console.WriteLine("The Student:");
+                Console.WriteLine(studentFound.studentFirstName + " " + studentFound.studentLastName + Environment.NewLine);
+                Console.WriteLine("Is already Enrolled in the Course:");
+                Console.WriteLine(courseFound.courseName);
+                Console.WriteLine("---------------------------------" + Environment.NewLine);
+                Console.WriteLine("Press Any key to continue...");
+                Console.ReadKey();
+            }
+            //End Verify is the stundet is already enrolled in the Course
+            else
+            {
+                if (studentFound != null && courseFound != null)
                 {
-                    printHeader();
-                    Console.WriteLine("The Student '" + studentFound.studentFirstName + " " + studentFound.studentLastName + "' do not have the 'Average Grade Points' required to enroll in the Course");
-                    Console.WriteLine("------------------------------------------");
-                    Console.WriteLine("Student 'Grade Points Average':         " + studentFound.gradePointAvg);
-                    Console.WriteLine("Course 'Required Average Grade Points': " + courseFound.minGPA);
-                    Console.WriteLine("------------------------------------------"+ Environment.NewLine);
-                    Console.WriteLine("Press Any key to continue...");
-                    Console.ReadKey();
+                    if (studentFound.gradePointAvg > courseFound.minGPA)
+                    {
+                        printHeader();
+                        Console.WriteLine("The Student '" + studentFound.studentFirstName + " " + studentFound.studentLastName + "' HAVE the 'Average Grade Points' required to enroll in the Course");
+                        Console.WriteLine("------------------------------------------");
+                        Console.WriteLine("Student 'Grade Points Average':         " + studentFound.gradePointAvg);
+                        Console.WriteLine("Course 'Required Average Grade Points': " + courseFound.minGPA);
+                        Console.WriteLine("------------------------------------------" + Environment.NewLine);
+                        if (studentFound.creditsEarned >= courseFound.credits)
+                        {
+                            Console.WriteLine("The Student '" + studentFound.studentFirstName + " " + studentFound.studentLastName + "' HAVE Enough 'Credits' to be enrolled in the Course");
+                            Console.WriteLine("------------------------------------------");
+                            Console.WriteLine("Student Current 'Credits': " + studentFound.creditsEarned);
+                            Console.WriteLine("Course Credits Required:   " + courseFound.credits);
+                            Console.WriteLine("------------------------------------------" + Environment.NewLine);
+                            courseFound.enrollStudent(studentFound);
+                            studentFound.substractCredits(courseFound.credits);
+                            Console.WriteLine("The Student '" + studentFound.studentFirstName + " " + studentFound.studentLastName + "' was succefully Enrolled!");
+                            Console.WriteLine("Student Current 'Credits':  " + studentFound.creditsEarned);
+                            Console.WriteLine("Press Any key to continue...");
+                            Console.ReadKey();
+                        }
+                        else
+                        {
+                            Console.WriteLine("The Student '" + studentFound.studentFirstName + " " + studentFound.studentLastName + "' Do NOT have Enough 'Credits' to be enrolled in the Course");
+                            Console.WriteLine("------------------------------------------");
+                            Console.WriteLine("Student Current 'Credits': " + studentFound.creditsEarned);
+                            Console.WriteLine("Course Credits Required:   " + courseFound.credits);
+                            Console.WriteLine("------------------------------------------" + Environment.NewLine);
+                            Console.WriteLine("Press Any key to continue...");
+                            Console.ReadKey();
+                        }
+                        //printHeader();
+                        //Console.WriteLine("-----------------------------------------------");
+                        //Console.WriteLine("The Student '" + studentFound.studentFirstName +" "+ studentFound.studentLastName + "' was succefully Enrolled!");
+                        //Console.WriteLine("-----------------------------------------------" + Environment.NewLine);
+                        //Console.WriteLine("Press Any key to continue...");
+                        //Console.ReadKey();
+                    }
+                    else
+                    {
+                        printHeader();
+                        Console.WriteLine("The Student '" + studentFound.studentFirstName + " " + studentFound.studentLastName + "' do NOT have the 'Average Grade Points' required to enroll in the Course");
+                        Console.WriteLine("------------------------------------------");
+                        Console.WriteLine("Student 'Grade Points Average':         " + studentFound.gradePointAvg);
+                        Console.WriteLine("Course 'Required Average Grade Points': " + courseFound.minGPA);
+                        Console.WriteLine("------------------------------------------" + Environment.NewLine);
+                        Console.WriteLine("Press Any key to continue...");
+                        Console.ReadKey();
+                    }
                 }
             }
+
+            //Enroll Student to the Course
+            
             
         }
         //Print Header
-        static void printHeader()
+        private static void printHeader()
         {
             Console.Clear();
             Console.WriteLine("************************");
             Console.WriteLine("School Management System");
-            Console.WriteLine("************************" + Environment.NewLine);
+            Console.WriteLine("************************");
+            Console.WriteLine("<Press x to return Menu>" + Environment.NewLine);
             //Console.WriteLine("<<<<Choose an Option>>>>");
         }
-        static bool isInt(string intInString)
+        private static bool isInt(string intInString)
         {
             if (!double.TryParse(intInString, out _))
             {
@@ -398,7 +626,7 @@ namespace School
             }
         }
 
-        static void FindCourseByID(List<Course> listOfCourseAux)
+        private static void FindCourseByID(List<Course> listOfCourseAux)
         {
             //Found Course by ID 
             List<Course> listOfCoursesFound = new List<Course>();
@@ -414,6 +642,7 @@ namespace School
                 Console.WriteLine("*********Search Course*********" + Environment.NewLine);
                 Console.WriteLine("Enter the Course ID you want display the information ");
                 courseIdToSearch = Console.ReadLine();
+                if (courseIdToSearch=="x") { break; }
                 if (!string.IsNullOrEmpty(courseIdToSearch) && isInt(courseIdToSearch))
                 {
                     foreach (Course item in listOfCourseAux)
@@ -453,6 +682,7 @@ namespace School
                             Console.WriteLine("(1) Yes");
                             Console.WriteLine("(2) No");
                             printStudentsFlag = Console.ReadLine();
+                            if (printStudentsFlag == "x") { return; }
 
                             switch (printStudentsFlag)
                             {
@@ -514,6 +744,7 @@ namespace School
                 Console.WriteLine("*********Search Teacher*********" + Environment.NewLine);
                 Console.WriteLine("Enter the 'Teacher ID'that you want to display the information ");
                 teacherIdToSearch = Console.ReadLine();
+                if (teacherIdToSearch == "x") { return; }
                 if (!string.IsNullOrEmpty(teacherIdToSearch) && isInt(teacherIdToSearch))
                 {
                     foreach (Teacher item in listOfTeachers)
@@ -564,7 +795,7 @@ namespace School
 
         }
 
-        static void earnCredits(List<Student> listOfStudentsAux)
+        private static void earnCredits(List<Student> listOfStudentsAux)
         {
             //Found Student by ID 
             List<Student> listOfStudentsFound = new List<Student>();
@@ -582,6 +813,7 @@ namespace School
                 Console.WriteLine("*********Search Student*********" + Environment.NewLine);
                 Console.WriteLine("Enter the Student ID that you want to Earn Credits: ");
                 studentIdToSearch = Console.ReadLine();
+                if (studentIdToSearch == "x") { return; }
                 if (!string.IsNullOrEmpty(studentIdToSearch) && isInt(studentIdToSearch))
                 {
                     foreach (Student studentAux in listOfStudentsAux)
@@ -609,6 +841,7 @@ namespace School
                             Console.WriteLine("***************************************************");
                             Console.WriteLine("Please enter the Number of Credits you want to earn");
                             numberOfCredits = Console.ReadLine();
+                            if (numberOfCredits == "x") { return; }
                             if (!string.IsNullOrEmpty(numberOfCredits) && isInt(numberOfCredits) && int.Parse(numberOfCredits)>0)
                             {
                                 studentFound.creditsEarned = studentFound.creditsEarned + int.Parse(numberOfCredits);
@@ -654,7 +887,7 @@ namespace School
 
         }
 
-        static void printGrades(List<Course> listOfCourseAux)
+        private static void printGrades(List<Course> listOfCourseAux)
         {
 
             //Found Course by ID 
@@ -671,6 +904,7 @@ namespace School
                 Console.WriteLine("*********Search Course*********" + Environment.NewLine);
                 Console.WriteLine("Enter the Course ID that you want to display the Grades");
                 courseIdToSearch = Console.ReadLine();
+                if (courseIdToSearch == "x") { return; }
                 if (!string.IsNullOrEmpty(courseIdToSearch) && isInt(courseIdToSearch))
                 {
                     foreach (Course item in listOfCourseAux)
@@ -718,7 +952,7 @@ namespace School
 
         }
 
-        static void printApprovedStudentsGrades(List<Course> listOfCourseAux)
+        private static void printApprovedStudentsGrades(List<Course> listOfCourseAux)
         {
 
             //Found Course by ID 
@@ -735,6 +969,7 @@ namespace School
                 Console.WriteLine("*********Search Course*********" + Environment.NewLine);
                 Console.WriteLine("Enter the Course ID that you want to display the Grades");
                 courseIdToSearch = Console.ReadLine();
+                if (courseIdToSearch == "x") { return; }
                 if (!string.IsNullOrEmpty(courseIdToSearch) && isInt(courseIdToSearch))
                 {
                     foreach (Course item in listOfCourseAux)
@@ -786,7 +1021,7 @@ namespace School
 
         }
 
-        static void printFailedStudentsGrades(List<Course> listOfCourseAux)
+        private static void printFailedStudentsGrades(List<Course> listOfCourseAux)
         {
 
             //Found Course by ID 
@@ -803,6 +1038,7 @@ namespace School
                 Console.WriteLine("******Search Course*****" + Environment.NewLine);
                 Console.WriteLine("Enter the Course ID that you want to display the Grades");
                 courseIdToSearch = Console.ReadLine();
+                if (courseIdToSearch == "x") { return; }
                 if (!string.IsNullOrEmpty(courseIdToSearch) && isInt(courseIdToSearch))
                 {
                     foreach (Course item in listOfCourseAux)

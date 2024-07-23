@@ -18,6 +18,7 @@ namespace School
         internal string status;
         internal int approvalScore;
         internal double minGPA;
+        internal bool haveInstructor = false;  
 
         public Course(int courseIdAux, string courseNameAux, int creditsAux, Teacher InstructorAux, string scheduleAux, string descriptionAux, string statusAux, int approvalScoreAux, double minGPAAux)
         {
@@ -25,19 +26,32 @@ namespace School
             this.courseName = courseNameAux;
             this.credits = creditsAux;
             this.Instructor = InstructorAux;
+            this.haveInstructor = true;
             this.schedule = scheduleAux;
             this.description = descriptionAux;
             this.status = statusAux;
             this.approvalScore = approvalScoreAux;
             this.minGPA = minGPAAux;
         }
-
+        //printCourseData(courseName, credits, schedule, description, status, approvalScore, minGPA);
+        public Course(string courseNameAux, int creditsAux, string scheduleAux, string descriptionAux, string statusAux, int approvalScoreAux, double minGPAAux)
+        {
+            this.courseId = generateId();
+            this.courseName = courseNameAux;
+            this.credits = creditsAux;
+            this.Instructor = null;
+            this.schedule = scheduleAux;
+            this.description = descriptionAux;
+            this.status = statusAux;
+            this.approvalScore = approvalScoreAux;
+            this.minGPA = minGPAAux;
+        }
         private int generateId()
         {
             Random random = new Random();
-            int fourDigitNumber = random.Next(1000, 10000);
-            Console.WriteLine(fourDigitNumber);
-            return fourDigitNumber;
+            int idCourse = random.Next(1000, 10000);
+            //Console.WriteLine(idCourse);
+            return idCourse;
         }
         internal void PrintCourseData()
         {
@@ -108,6 +122,15 @@ namespace School
             }
             Console.WriteLine("Press Any key to continue...");
             Console.ReadKey();
+        }
+        internal bool instructorStatus()
+        {
+            if (haveInstructor) { return true; }
+            else { return false; }
+        }
+        internal void setTrueInstructorStatus()
+        {
+            haveInstructor = true;
         }
     }
 }

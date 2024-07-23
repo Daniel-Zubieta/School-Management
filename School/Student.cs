@@ -136,7 +136,10 @@ namespace School
 
             }
         }
-
+        internal void substractCredits(int credits)
+        {
+            this.creditsEarned = this.creditsEarned - credits;
+        }
     }
    
 }

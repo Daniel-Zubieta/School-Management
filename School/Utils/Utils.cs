@@ -90,6 +90,7 @@ namespace School.Utils
             printStudentData(studentFirstName, studentLastName, address, phoneNumber, dateOfbirthAux, enrollmentDateAux, major);
             Console.WriteLine("Please Enter the Student First Name:");
             studentFirstName = Console.ReadLine();
+            if (studentFirstName == "x") { return; }
             while (string.IsNullOrEmpty(studentFirstName))
             {
                 printHeader();
@@ -97,12 +98,14 @@ namespace School.Utils
                 Console.WriteLine("Name is Empty or Invalid");
                 Console.WriteLine("Please Enter the Student First Name:");
                 studentFirstName = Console.ReadLine();
+                if (studentFirstName == "x") { return; }
             }
 
             printHeader();
             printStudentData(studentFirstName, studentLastName, address, phoneNumber, dateOfbirthAux, enrollmentDateAux, major);
             Console.WriteLine("Please Enter the Student Last Name:");
             studentLastName = Console.ReadLine();
+            if (studentLastName == "x") { return; }
             while (string.IsNullOrEmpty(studentLastName))
             {
                 printHeader();
@@ -110,12 +113,14 @@ namespace School.Utils
                 Console.WriteLine("Name is Empty or Invalid");
                 Console.WriteLine("Please Enter the Student Last Name:");
                 studentLastName = Console.ReadLine();
+                if (studentLastName == "x") { return; }
             }
 
             printHeader();
             printStudentData(studentFirstName, studentLastName, address, phoneNumber, dateOfbirthAux, enrollmentDateAux, major);
             Console.WriteLine("Please Enter the Student Address:");
             address = Console.ReadLine();
+            if (address == "x") { return; }
             while (string.IsNullOrEmpty(address))
             {
                 printHeader();
@@ -123,12 +128,14 @@ namespace School.Utils
                 Console.WriteLine("Address is Empty or Invalid");
                 Console.WriteLine("Please Enter the Student Address");
                 address = Console.ReadLine();
+                if (address == "x") { return; }
             }
 
             printHeader();
             printStudentData(studentFirstName, studentLastName, address, phoneNumber, dateOfbirthAux, enrollmentDateAux, major);
             Console.WriteLine("Please Enter the Student Phone Number:");
             phoneNumber = Console.ReadLine();
+            if (phoneNumber == "x") { return; }
             if (!isInt(phoneNumber))
             {
                 phoneNumber = string.Empty;
@@ -140,6 +147,7 @@ namespace School.Utils
                 Console.WriteLine("Phone Number is Empty or Invalid");
                 Console.WriteLine("Please Enter the Student Phone Number");
                 phoneNumber = Console.ReadLine();
+                if (phoneNumber == "x") { return; }
                 if (!isInt(phoneNumber))
                 {
                     phoneNumber = string.Empty;
@@ -150,6 +158,7 @@ namespace School.Utils
             printStudentData(studentFirstName, studentLastName, address, phoneNumber, dateOfbirthAux, enrollmentDateAux, major);
             Console.WriteLine("Please Enter the Student Date Of Birth in the following Format e.g. mm/dd/yy");
             dateOfbirthAux = Console.ReadLine();
+            if (dateOfbirthAux == "x") { return; }
             dateOfbirthFlag = IsValidDateTime(dateOfbirthAux);
             while (!dateOfbirthFlag)
             {
@@ -159,6 +168,7 @@ namespace School.Utils
                 Console.WriteLine("Date of Birth is Empty or Invalid");
                 Console.WriteLine("Please Enter the Student Date Of Birth in the following Format e.g. mm/dd/yy");
                 dateOfbirthAux = Console.ReadLine();
+                if (dateOfbirthAux == "x") { return; }
                 dateOfbirthFlag = IsValidDateTime(dateOfbirthAux);
             }
             dateOfbirth = DateTime.Parse(dateOfbirthAux);
@@ -167,6 +177,7 @@ namespace School.Utils
             printStudentData(studentFirstName, studentLastName, address, phoneNumber, dateOfbirthAux, enrollmentDateAux, major);
             Console.WriteLine("Please Enter the Student Date Of Enrollment in the following Format e.g. mm/dd/yy");
             enrollmentDateAux = Console.ReadLine();
+            if (enrollmentDateAux == "x") { return; }
             enrollmentDateFlag = IsValidDateTime(enrollmentDateAux);
             while (!enrollmentDateFlag)
             {
@@ -176,6 +187,7 @@ namespace School.Utils
                 Console.WriteLine("Date of Enrollment is Empty or Invalid");
                 Console.WriteLine("Please Enter the Student Date Of Birth in the following Format e.g. mm/dd/yy");
                 enrollmentDateAux = Console.ReadLine();
+                if (enrollmentDateAux == "x") { return; }
                 enrollmentDateFlag = IsValidDateTime(enrollmentDateAux);
             }
             enrollmentDate = DateTime.Parse(enrollmentDateAux);
@@ -191,7 +203,7 @@ namespace School.Utils
             Console.ReadLine();
         }
 
-        public static void addTeacher()
+        public static void addTeacher(List<Teacher> listOfTeachersAux)
         {
             //Department(string): Department the teacher belongs to.
             //Specialization(string): Area of specialization of the teacher.
@@ -216,6 +228,7 @@ namespace School.Utils
             printTeacherData(teacherFirstName, teacherLastName, teacherAddress, phoneNumber, dateOfbirthAux, hireDateAux, deparment, specialiation, salaryAux);
             Console.WriteLine("Please Enter the Teacher First Name:");
             teacherFirstName = Console.ReadLine();
+            if (teacherFirstName == "x") { return; }
             while (string.IsNullOrEmpty(teacherFirstName))
             {
                 printHeader();
@@ -223,12 +236,14 @@ namespace School.Utils
                 Console.WriteLine("Name is Empty or Invalid");
                 Console.WriteLine("Please Enter the Teacher First Name:");
                 teacherFirstName = Console.ReadLine();
+                if (teacherFirstName == "x") { return; }
             }
 
             printHeader();
             printTeacherData(teacherFirstName, teacherLastName, teacherAddress, phoneNumber, dateOfbirthAux, hireDateAux, deparment, specialiation, salaryAux);
             Console.WriteLine("Please Enter the Teacher Last Name:");
             teacherLastName = Console.ReadLine();
+            if (teacherLastName == "x") { return; }
             while (string.IsNullOrEmpty(teacherLastName))
             {
                 printHeader();
@@ -236,18 +251,21 @@ namespace School.Utils
                 Console.WriteLine("Name is Empty or Invalid");
                 Console.WriteLine("Please Enter the Teacher Last Name:");
                 teacherLastName = Console.ReadLine();
+                if (teacherLastName == "x") { return; }
             }
 
             printHeader();
             printTeacherData(teacherFirstName, teacherLastName, teacherAddress, phoneNumber, dateOfbirthAux, hireDateAux, deparment, specialiation, salaryAux);
             Console.WriteLine("Please Enter the Teacher Address:");
             teacherAddress = Console.ReadLine();
+            if (teacherAddress == "x") { return; }
             while (string.IsNullOrEmpty(teacherAddress))
             {
                 printHeader();
                 printTeacherData(teacherFirstName, teacherLastName, teacherAddress, phoneNumber, dateOfbirthAux, hireDateAux, deparment, specialiation, salaryAux);
                 Console.WriteLine("Please Enter the Teacher Address");
                 teacherAddress = Console.ReadLine();
+                if (teacherAddress == "x") { return; }
             }
 
             //Teacher Phone Number
@@ -255,6 +273,7 @@ namespace School.Utils
             printTeacherData(teacherFirstName, teacherLastName, teacherAddress, phoneNumber, dateOfbirthAux, hireDateAux, deparment, specialiation, salaryAux);
             Console.WriteLine("Please Enter the Teacher Phone Number:");
             phoneNumber = Console.ReadLine();
+            if (phoneNumber == "x") { return; }
             if (!isInt(phoneNumber))
             {
                 phoneNumber = string.Empty;
@@ -266,6 +285,7 @@ namespace School.Utils
                 Console.WriteLine("Phone Number is Empty or Invalid");
                 Console.WriteLine("Please Enter the Teacher Phone Number");
                 phoneNumber = Console.ReadLine();
+                if (phoneNumber == "x") { return; }
                 if (!isInt(phoneNumber))
                 {
                     phoneNumber = string.Empty;
@@ -276,6 +296,7 @@ namespace School.Utils
             printTeacherData(teacherFirstName, teacherLastName, teacherAddress, phoneNumber, dateOfbirthAux, hireDateAux, deparment, specialiation, salaryAux);
             Console.WriteLine("Please Enter the Teacher Date Of Birth in the following Format e.g. mm/dd/yy");
             dateOfbirthAux = Console.ReadLine();
+            if (dateOfbirthAux == "x") { return; }
             dateOfbirthFlag = IsValidDateTime(dateOfbirthAux);
             while (!dateOfbirthFlag)
             {
@@ -285,6 +306,7 @@ namespace School.Utils
                 Console.WriteLine("Date of Birth is Empty or Invalid");
                 Console.WriteLine("Please Enter the Teacher Date Of Birth in the following Format e.g. mm/dd/yy");
                 dateOfbirthAux = Console.ReadLine();
+                if (dateOfbirthAux == "x") { return; }
                 dateOfbirthFlag = IsValidDateTime(dateOfbirthAux);
             }
             dateOfbirth = DateTime.Parse(dateOfbirthAux);
@@ -293,6 +315,7 @@ namespace School.Utils
             printTeacherData(teacherFirstName, teacherLastName, teacherAddress, phoneNumber, dateOfbirthAux, hireDateAux, deparment, specialiation, salaryAux);
             Console.WriteLine("Please Enter the Teacher Date Of Hire in the following Format e.g. mm/dd/yy");
             hireDateAux = Console.ReadLine();
+            if (hireDateAux == "x") { return; }
             hireDateFlag = IsValidDateTime(hireDateAux);
             while (!hireDateFlag)
             {
@@ -302,6 +325,7 @@ namespace School.Utils
                 Console.WriteLine("Date of Enrollment is Empty or Invalid");
                 Console.WriteLine("Please Enter the Teacher Date Of Hire in the following Format e.g. mm/dd/yy");
                 hireDateAux = Console.ReadLine();
+                if (hireDateAux == "x") { return; }
                 hireDateFlag = IsValidDateTime(hireDateAux);
             }
             hireDate = DateTime.Parse(hireDateAux);
@@ -311,24 +335,28 @@ namespace School.Utils
             printTeacherData(teacherFirstName, teacherLastName, teacherAddress, phoneNumber, dateOfbirthAux, hireDateAux, deparment, specialiation, salaryAux);
             Console.WriteLine("Please Enter the Teacher Deparment:");
             deparment = Console.ReadLine();
+            if (deparment == "x") { return; }
             while (string.IsNullOrEmpty(deparment))
             {
                 printHeader();
                 printTeacherData(teacherFirstName, teacherLastName, teacherAddress, phoneNumber, dateOfbirthAux, hireDateAux, deparment, specialiation, salaryAux);
                 Console.WriteLine("Please Enter the Teacher Deparment");
                 deparment = Console.ReadLine();
+                if (deparment == "x") { return; }
             }
             //Teacher Specialiation
             printHeader();
             printTeacherData(teacherFirstName, teacherLastName, teacherAddress, phoneNumber, dateOfbirthAux, hireDateAux, deparment, specialiation, salaryAux);
             Console.WriteLine("Please Enter the Teacher Specialiation:");
             specialiation = Console.ReadLine();
+            if (specialiation == "x") { return; }
             while (string.IsNullOrEmpty(specialiation))
             {
                 printHeader();
                 printTeacherData(teacherFirstName, teacherLastName, teacherAddress, phoneNumber, dateOfbirthAux, hireDateAux, deparment, specialiation, salaryAux);
                 Console.WriteLine("Please Enter the Teacher Specialiation");
                 specialiation = Console.ReadLine();
+                if (specialiation == "x") { return; }
             }
             // End Teacher Specialiation
 
@@ -336,7 +364,8 @@ namespace School.Utils
             printHeader();
             printTeacherData(teacherFirstName, teacherLastName, teacherAddress, phoneNumber, dateOfbirthAux, hireDateAux, deparment, specialiation, salaryAux);
             Console.WriteLine("Please Enter the Teacher Salary:");
-            phoneNumber = Console.ReadLine();
+            salaryAux = Console.ReadLine();
+            if (salaryAux == "x") { return; }
             if (!isDouble(salaryAux))
             {
                 salaryAux = string.Empty;
@@ -348,6 +377,7 @@ namespace School.Utils
                 Console.WriteLine("Salary is Empty or Invalid");
                 Console.WriteLine("Please Enter the Teacher Salary");
                 salaryAux = Console.ReadLine();
+                if (salaryAux == "x") { return; }
                 if (!isDouble(salaryAux))
                 {
                     salaryAux = string.Empty;
@@ -369,7 +399,7 @@ namespace School.Utils
             //End Salary
 
             Teacher teacher = new Teacher(teacherFirstName, teacherLastName, teacherAddress, phoneNumber, deparment, specialiation, salary, dateOfbirth, hireDate);
-
+            listOfTeachersAux.Add(teacher);
             //Teacher Data
             printHeader();
             Console.WriteLine("New Teacher was created" + Environment.NewLine);
@@ -379,7 +409,7 @@ namespace School.Utils
             Console.ReadLine();
         }
 
-        public static void createCourse()
+        public static void createCourse(List<Course> listOfCoursesAux)
         {
             int courseId;
             string courseName = string.Empty;
@@ -404,6 +434,7 @@ namespace School.Utils
             printCourseData(courseName, credits, schedule, description, status, approvalScore, minGPA);
             Console.WriteLine("Please Enter the Course Name:");
             courseName = Console.ReadLine();
+            if (courseName == "x") { return; }
             while (string.IsNullOrEmpty(courseName))
             {
                 printHeader();
@@ -419,6 +450,7 @@ namespace School.Utils
             printCourseData(courseName, credits, schedule, description, status, approvalScore, minGPA);
             Console.WriteLine("Please Enter the Course Credits:");
             creditsAux = Console.ReadLine();
+            if (creditsAux == "x") { return; }
             if (!isInt(creditsAux))
             {
                 creditsAux = string.Empty;
@@ -430,6 +462,7 @@ namespace School.Utils
                 Console.WriteLine("Credits is Empty or Invalid");
                 Console.WriteLine("Please Enter the Course Credits");
                 creditsAux = Console.ReadLine();
+                if (creditsAux == "x") { return; }
                 if (!isInt(creditsAux))
                 {
                     creditsAux = string.Empty;
@@ -456,6 +489,7 @@ namespace School.Utils
             printCourseData(courseName, credits, schedule, description, status, approvalScore, minGPA);
             Console.WriteLine("Please Enter the Course Initial Schedule time in the following Format e.g. HH:mm");
             scheduleInit = Console.ReadLine();
+            if (scheduleInit == "x") { return; }
             scheduleFlag = IsValidTime(scheduleInit);
             while (!scheduleFlag)
             {
@@ -465,6 +499,7 @@ namespace School.Utils
                 Console.WriteLine("Initial Schedule Time is Empty or Invalid");
                 Console.WriteLine("Please Enter the Course Initial Schedule time in the following Format e.g. HH:mm");
                 scheduleInit = Console.ReadLine();
+                if (scheduleInit == "x") { return; }
                 scheduleFlag = IsValidDateTime(scheduleInit);
             }
 
@@ -474,6 +509,7 @@ namespace School.Utils
             printCourseData(courseName, credits, schedule, description, status, approvalScore, minGPA);
             Console.WriteLine("Please Enter the Course End Schedule in the following Format e.g. HH:mm");
             scheduleEnd = Console.ReadLine();
+            if (scheduleEnd == "x") { return; }
             scheduleFlag = IsValidTime(scheduleEnd);
             while (!scheduleFlag)
             {
@@ -483,6 +519,7 @@ namespace School.Utils
                 Console.WriteLine("End Schedule Time is Empty or Invalid");
                 Console.WriteLine("Please Enter the Course End Schedule time in the following Format e.g. HH:mm");
                 scheduleEnd = Console.ReadLine();
+                if (scheduleEnd == "x") { return; }
                 scheduleFlag = IsValidDateTime(scheduleEnd);
             }
             schedule = scheduleInit + "-" + scheduleEnd;
@@ -495,6 +532,7 @@ namespace School.Utils
             printCourseData(courseName, credits, schedule, description, status, approvalScore, minGPA);
             Console.WriteLine("Please Enter the Course Description:");
             description = Console.ReadLine();
+            if (description == "x") { return; }
             while (string.IsNullOrEmpty(description))
             {
                 printHeader();
@@ -502,6 +540,7 @@ namespace School.Utils
                 Console.WriteLine("Description is Empty or Invalid");
                 Console.WriteLine("Please Enter the Course Description:");
                 description = Console.ReadLine();
+                if (description == "x") { return; }
             }
             //End Course Description
 
@@ -511,6 +550,7 @@ namespace School.Utils
             PrintStatusMenu();
 
             status = Console.ReadLine();
+            if (status == "x") { return; }
             if (isInt(status))
             {
                 switch (status)
@@ -542,6 +582,7 @@ namespace School.Utils
                     Console.WriteLine("The Selected Option is invalid");
                     Console.WriteLine("Please select a Valid Option for the Status:");
                     status = Console.ReadLine();
+                    if (status == "x") { return; }
                     if (isInt(status))
                     {
                         switch (status)
@@ -575,6 +616,7 @@ namespace School.Utils
             printCourseData(courseName, credits, schedule, description, status, approvalScore, minGPA);
             Console.WriteLine("Please Enter a valid Approval Score between (1 - 100)");
             approvalScoreAux = Console.ReadLine();
+            if (approvalScoreAux == "x") { return; }
             if (!isInt(approvalScoreAux))
             {
                 approvalScoreAux = string.Empty;
@@ -595,6 +637,7 @@ namespace School.Utils
                 Console.WriteLine("Approval Score is Empty or Invalid");
                 Console.WriteLine("Please Enter a valid Approval Score between (1 - 100)");
                 approvalScoreAux = Console.ReadLine();
+                if (approvalScoreAux == "x") { return; }
                 if (!isInt(approvalScoreAux))
                 {
                     approvalScoreAux = string.Empty;
@@ -621,6 +664,7 @@ namespace School.Utils
             printCourseData(courseName, credits, schedule, description, status, approvalScore, minGPA);
             Console.WriteLine("Please Enter a valid Minimum GPA between (1 - 100)");
             minGPAAux = Console.ReadLine();
+            if (minGPAAux == "x") { return; }
             if (!isInt(minGPAAux))
             {
                 minGPAAux = string.Empty;
@@ -641,6 +685,7 @@ namespace School.Utils
                 Console.WriteLine("Minimum GPA is Empty or Invalid");
                 Console.WriteLine("Please Enter a valid Minimum GPA between (1 - 100)");
                 minGPAAux = Console.ReadLine();
+                if (minGPAAux == "x") { return; }
                 if (!isInt(minGPAAux))
                 {
                     minGPAAux = string.Empty;
@@ -657,8 +702,11 @@ namespace School.Utils
 
                 }
             }
-            Console.Clear();
-            printCourseData(courseName, credits, schedule, description, status, approvalScore, minGPA);
+           
+            Course course = new Course(courseName, credits, schedule, description, status, approvalScore, minGPA);
+            listOfCoursesAux.Add(course);
+            printHeader();
+            course.PrintCourseData();
             Console.WriteLine("Press Any key to back to the Menu...");
             Console.ReadKey();
             //End Course Min GPA
@@ -724,8 +772,8 @@ namespace School.Utils
             Console.Clear();
             Console.WriteLine("************************");
             Console.WriteLine("School Management System");
-            Console.WriteLine("************************" + Environment.NewLine);
-            //Console.WriteLine("<<<<Choose an Option>>>>");
+            Console.WriteLine("************************");
+            Console.WriteLine("<Press x to return Menu>" + Environment.NewLine);
         }
         static void printStudentData(string studentFirstName, string studentLastName, string address, string phoneNumber, string dateOfBirth, string enrollmentDate, string major)
         {
@@ -767,12 +815,13 @@ namespace School.Utils
         static void printCourseData(string courseName, int credits, string schedule, string description, string status, int approvalScore, double minGPA)
         {
             Console.WriteLine("*********Course Data*********" + Environment.NewLine);
+            //Console.WriteLine("Course Id:      " + courseId);
             Console.WriteLine("Course Name:    " + courseName);
-            Console.WriteLine("Course Credits:     " + credits);
+            Console.WriteLine("Course Credits: " + credits);
             Console.WriteLine("Schedule:       " + schedule);
-            Console.WriteLine("Description:       " + description);
-            Console.WriteLine("Status:    " + status);
-            Console.WriteLine("Approval Score:   " + approvalScore);
+            Console.WriteLine("Description:    " + description);
+            Console.WriteLine("Status:         " + status);
+            Console.WriteLine("Approval Score: " + approvalScore);
             Console.WriteLine("Minimun GPA     " + minGPA);
             Console.WriteLine("*****************************" + Environment.NewLine);
             Console.WriteLine("" + Environment.NewLine);
@@ -791,6 +840,7 @@ namespace School.Utils
             Console.WriteLine("********Search Student********" + Environment.NewLine);
             Console.WriteLine("Enter the Student Name Or ID: ");
             studentNameToSearch = Console.ReadLine();
+            if (studentNameToSearch == "x") { return; }
 
             if (!string.IsNullOrEmpty(studentNameToSearch) && !isInt(studentNameToSearch))
             {
