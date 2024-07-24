@@ -8,16 +8,16 @@ namespace School
 {
     public class Course
     {
-        internal int courseId;
-        internal string courseName;
-        internal int credits;
-        internal Teacher Instructor;
+        internal int courseId { get; set; }
+        internal string courseName { get; set; }
+        internal int credits { get; set; }
+        internal Teacher Instructor { get; set; }
         internal List<Student> ListOfStudents = new List<Student>();
-        internal string schedule;
-        internal string description;
-        internal string status;
-        internal int approvalScore;
-        internal double minGPA;
+        internal string schedule { get; set; }
+        internal string description { get; set; }
+        internal string status { get; set; }
+        internal int approvalScore { get; set; }
+        internal double minGPA { get; set; }
         internal bool haveInstructor = false;  
 
         public Course(int courseIdAux, string courseNameAux, int creditsAux, Teacher InstructorAux, string scheduleAux, string descriptionAux, string statusAux, int approvalScoreAux, double minGPAAux)
@@ -60,7 +60,10 @@ namespace School
             Console.WriteLine("Course ID:     " + this.courseId);
             Console.WriteLine("Course Name:   " + this.courseName);
             Console.WriteLine("Course Credits:" + this.credits);
-            Console.WriteLine("Instructor:    " + this.Instructor);
+            if(haveInstructor)
+            {
+                Console.WriteLine("Instructor:    " + this.Instructor.teacherFirstName + " " + this.Instructor.teacherLastName);
+            }            
             Console.WriteLine("Schedule:      " + this.schedule);
             Console.WriteLine("Description:   " + this.description);
             Console.WriteLine("Status:        " + this.status);
@@ -104,7 +107,7 @@ namespace School
 
         internal void printApprovedStudentsGrades()
         {
-            Console.WriteLine("<List Of 'Students' Approved>" + Environment.NewLine);
+            Console.WriteLine("<List Of Approved 'Students' >" + Environment.NewLine);
             foreach (Student studentAux in this.ListOfStudents)
             {
                 studentAux.PrintStudentGradeIfApproved(this.courseId);
@@ -115,7 +118,7 @@ namespace School
 
         internal void printFailedStudentsGrades()
         {
-            Console.WriteLine("<List Of 'Students' Approved>" + Environment.NewLine);
+            Console.WriteLine("<List Of Failed 'Students' >" + Environment.NewLine);
             foreach (Student studentAux in this.ListOfStudents)
             {
                 studentAux.PrintStudentGradeIfFailed(this.courseId);

@@ -1,0 +1,29 @@
+C:\Users\daniel.zubieta\source\repos\School\School\obj\Debug\net8.0\School.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\daniel.zubieta\source\repos\School\School\obj\Debug\net8.0\School.AssemblyInfoInputs.cache
+C:\Users\daniel.zubieta\source\repos\School\School\obj\Debug\net8.0\School.AssemblyInfo.cs
+C:\Users\daniel.zubieta\source\repos\School\School\obj\Debug\net8.0\School.csproj.CoreCompileInputs.cache
+C:\Users\daniel.zubieta\source\repos\School\School\bin\Debug\net8.0\School.exe
+C:\Users\daniel.zubieta\source\repos\School\School\bin\Debug\net8.0\School.deps.json
+C:\Users\daniel.zubieta\source\repos\School\School\bin\Debug\net8.0\School.runtimeconfig.json
+C:\Users\daniel.zubieta\source\repos\School\School\bin\Debug\net8.0\School.dll
+C:\Users\daniel.zubieta\source\repos\School\School\bin\Debug\net8.0\School.pdb
+C:\Users\daniel.zubieta\source\repos\School\School\obj\Debug\net8.0\School.dll
+C:\Users\daniel.zubieta\source\repos\School\School\obj\Debug\net8.0\refint\School.dll
+C:\Users\daniel.zubieta\source\repos\School\School\obj\Debug\net8.0\School.pdb
+C:\Users\daniel.zubieta\source\repos\School\School\obj\Debug\net8.0\School.genruntimeconfig.cache
+C:\Users\daniel.zubieta\source\repos\School\School\obj\Debug\net8.0\ref\School.dll
+C:\DevF I\School\School\bin\Debug\net8.0\School.exe
+C:\DevF I\School\School\bin\Debug\net8.0\School.deps.json
+C:\DevF I\School\School\bin\Debug\net8.0\School.runtimeconfig.json
+C:\DevF I\School\School\bin\Debug\net8.0\School.dll
+C:\DevF I\School\School\bin\Debug\net8.0\School.pdb
+C:\DevF I\School\School\obj\Debug\net8.0\School.GeneratedMSBuildEditorConfig.editorconfig
+C:\DevF I\School\School\obj\Debug\net8.0\School.AssemblyInfoInputs.cache
+C:\DevF I\School\School\obj\Debug\net8.0\School.AssemblyInfo.cs
+C:\DevF I\School\School\obj\Debug\net8.0\School.csproj.CoreCompileInputs.cache
+C:\DevF I\School\School\obj\Debug\net8.0\School.dll
+C:\DevF I\School\School\obj\Debug\net8.0\refint\School.dll
+C:\DevF I\School\School\obj\Debug\net8.0\School.pdb
+C:\DevF I\School\School\obj\Debug\net8.0\School.genruntimeconfig.cache
+C:\DevF I\School\School\obj\Debug\net8.0\ref\School.dll
+C:\DevF I\School\School\obj\Debug\net8.0\School.sourcelink.json

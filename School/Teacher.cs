@@ -8,18 +8,17 @@ namespace School
 {
     public class Teacher
     {
-        internal int teacherID;
-        internal string teacherFirstName;
-        internal string teacherLastName;
-        internal string address;
-        internal string phoneNumber;
-        internal string deparment;
-        internal string specialiation;
-        internal double salary;
-        internal DateTime dateOfbirth;
-        internal DateTime hireDate;
-        //Teacher teacher = new Teacher(teacherFirstName, teacherLastName, teacherAddress, phoneNumber, deparment, specialiation, salary, dateOfbirth, hireDate);
-
+        internal int teacherID { get; set; }
+        internal string teacherFirstName { get; set; }
+        internal string teacherLastName { get; set; }
+        internal string address { get; set; }
+        internal string phoneNumber { get; set; }
+        internal string deparment { get; set; }
+        internal string specialiation { get; set; }
+        internal double salary { get; set; }
+        internal DateTime dateOfbirth { get; set; }
+        internal DateTime hireDate { get; set; }
+       
         public Teacher(string teacherFirstNameAux, string teacherLastNameAux, string addressAux, string phoneNumberAux, string deparmentAux, string specialiationAux,double salaryAux, DateTime dateOfbirthAux, DateTime hireDateAux)
         {
             this.teacherFirstName = teacherFirstNameAux;

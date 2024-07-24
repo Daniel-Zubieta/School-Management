@@ -44,7 +44,8 @@ namespace School.Utils
             Console.WriteLine("(2) Enroll Student in a Course");
             Console.WriteLine("(3) Assign Teacher to Course");
             Console.WriteLine("(4) View Course Information");
-            Console.WriteLine("(5) Exit");
+            Console.WriteLine("(5) View All Courses Information");
+            Console.WriteLine("(6) Exit");
             Console.WriteLine("------------------------");
         }
 
@@ -545,41 +546,20 @@ namespace School.Utils
             //End Course Description
 
             //Course Status
-            printHeader();
-            printCourseData(courseName, credits, schedule, description, status, approvalScore, minGPA);
-            PrintStatusMenu();
+            //printHeader();
+            //printCourseData(courseName, credits, schedule, description, status, approvalScore, minGPA);
+            //PrintStatusMenu();
 
-            status = Console.ReadLine();
-            if (status == "x") { return; }
-            if (isInt(status))
-            {
-                switch (status)
-                {
-                    case "1":
-                        status = "Ready";
-                        break;
-                    case "2":
-                        status = "Started";
-                        break;
-                    case "3":
-                        status = "Finished";
-                        break;
-                    case "4":
-                        status = "Close";
-                        break;
-                    default:
-                        break;
-                }
-            }
-            else
-            {
+            //status = Console.ReadLine();
+            //if (status == "x") { return; }
+            
                 while (!statusFlag)
                 {
                     printHeader();
                     printCourseData(courseName, credits, schedule, description, status, approvalScore, minGPA);
                     PrintStatusMenu();
                     Console.WriteLine("");
-                    Console.WriteLine("The Selected Option is invalid");
+                    
                     Console.WriteLine("Please select a Valid Option for the Status:");
                     status = Console.ReadLine();
                     if (status == "x") { return; }
@@ -604,11 +584,12 @@ namespace School.Utils
                                 statusFlag = true;
                                 break;
                             default:
+                                Console.WriteLine("The Selected Option is invalid");
                                 break;
                         }
                     }
                 }
-            }
+            
             //End Course Status
 
             //Course Approval Score
